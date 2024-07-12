@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(nocache ());
 app.use(session({secret:"Key",cookie:{maxAge:600000},resave: false,saveUninitialized: true,
-                store: new MongoStore({ mongooseConnection: mongoose.connection}))
+                store: new MongoStore({ mongooseConnection: mongodb://localhost:27017/shopping}))
 db.connect((err)=>{
   if(err) console.log("Connection Error"+err);
   else console.log("Database Connected to port 27017");
