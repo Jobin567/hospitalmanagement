@@ -10,7 +10,7 @@ var hbs = require('express-handlebars');
 var app = express();
 var db=require('./config/connection')
 var session=require('express-session')
-const MongoStore = require('connect-mongo')(session);
+
 const nocache=require("nocache")
 
 // view engine setup
@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(nocache ());
-app.use(session({secret:"Key",cookie:{maxAge:600000},resave: false,saveUninitialized: true,
-                store: new MongoStore({ mongooseConnection: mongodb://localhost:27017/shopping}))
+app.use(session({secret:"Key",cookie:{maxAge:600000},resave: false,saveUninitialized: true
+                }))
 db.connect((err)=>{
   if(err) console.log("Connection Error"+err);
   else console.log("Database Connected to port 27017");
