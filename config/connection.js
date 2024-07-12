@@ -9,7 +9,10 @@ module.exports.connect = async function (done) {
     const dbName = 'shopping';
 
     try {
-        const client = await MongoClient.connect(url);
+        const client = await MongoClient.connect(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
         state.db = client.db(dbName);
         done();
     } catch (err) {
